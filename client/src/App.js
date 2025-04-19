@@ -37,15 +37,9 @@ function App() {
         password: 123,
     };
 
-      //thats bascially the code we have to use to send a post
-      //pretty sure this would be a lot easier with axios
-      const res = await fetch('http://localhost:5000/api/send', {
-        method: 'POST',
-        //the info we want to send we put on body
-        body: JSON.stringify(dataToSend),
-        headers: { "content-type": "application/json" },
-      })
-      const result = await res.json()
+    //so thats post using axios, clean huh????
+    const res = await axios.post('http://localhost:5000/api/send', dataToSend);	
+    const result = res.data
   }
   sendData();
   handleGet();
