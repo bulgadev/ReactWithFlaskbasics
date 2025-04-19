@@ -9,18 +9,23 @@ function App() {
 
   //use effect will run on the start of the code, so we can talk to flask and take wut belong to us >:)
   useEffect(() => {
-    //calls flask
-    fetch('http://localhost:5000/api/data')
-    //we take our info from flask
-    .then(res => res.json())
-    //we save the info we just took
-    .then(json => {
-      setData(json); //saves the json into a state or whatever this is
-    }) //just in case our code goes kaboom
-    .catch(err => console.error("Im sorry for u man, good luck:", err))
 
    // Call the function here
+   handleGet();
   }, []); // Properly close the useEffect
+
+  function handleGet() {
+        //calls flask
+        fetch('http://localhost:5000/api/data')
+        //we take our info from flask
+        .then(res => res.json())
+        //we save the info we just took
+        .then(json => {
+          setData(json); //saves the json into a state or whatever this is
+        }) //just in case our code goes kaboom
+        .catch(err => console.error("Im sorry for u man, good luck:", err))
+    
+  }
 
   function handlePost() {
     
@@ -43,6 +48,7 @@ function App() {
       const result = await res.json()
   }
   sendData();
+  handleGet();
   }
 
   return(
